@@ -3472,3 +3472,6 @@ async function sendScript(text, ms) {
 
 // Executa
 sendScript(roteiro, delay);
+
+// Executa
+sendScript(roteiro, delay);
