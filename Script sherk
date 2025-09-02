@@ -1,10 +1,9 @@
 // === CONFIGURAÇÕES ===
-const delay = 100; // 0,1 segundos entre mensagens
+const delay = 100; // tempo entre mensagens (ms)
 
-// Cole seu texto corrido aqui ↓↓↓
-// Cada linha será enviada como uma mensagem separada
-const roteiro =
-Era uma vez uma linda princesa.
+// === COLE O TEXTO AQUI ===
+const roteiro = `
+ {Homem} Era uma vez uma linda princesa.
 
 Mas ela tinha um encantamento de uma espécie assustadora que só poderia
 
@@ -654,7 +653,7 @@ homem-biscoito de gengibre!
 
 - Eu não sou o monstro aqui. Você é. Você e o resto daquela fada
 
-lixo de contos, envenenando meu mundo perfeito. Agora, me diga! Onde estão os
+conto de fadas, envenenando meu mundo perfeito. Agora, me diga! Onde estão os
 
 outros?
 
@@ -736,7 +735,7 @@ e limpando para suas duas irmãs malvadas. Por favor, dê as boas-vindas à Cind
 
 chique. Embora ela viva com outros sete homens, ela não é fácil. Apenas
 
-beije seus lábios mortos e congelados e descubra que fio desencapado ela é. Venha
+beije seus lábios mortos e congelados e descubra o quão sensível ela é. Venha
 
 Vamos lá. Palmas para a Branca de Neve!
 
@@ -2280,7 +2279,7 @@ Você pertence a mim
 
 não é?
 
--Sim! Sim, é isso mesmo. Estou apavorado. Sabe, é melhor eu entrar.
+-Sim! Sim, é isso mesmo. Estou apavorada. Sabe, é melhor eu entrar.
 
 -Não se sinta mal, princesa. Eu também tinha medo do escuro, até
 
@@ -2308,7 +2307,7 @@ E eu sabia que vocês dois estavam se pegando. Eu podia sentir.
 
 e diga a ela como você se sente.
 
--Eu- - Não há nada a dizer. Além disso, mesmo que eu contasse isso a ela,
+-Eu- - Não há nada a dizer. Além disso, mesmo que eu dissesse isso a ela,
 
 bem, você sabe - - e eu não estou dizendo que sim porque eu não - - ela é uma
 
@@ -2360,7 +2359,7 @@ princesa, e eu sou - -
 
 -Sou eu, neste corpo.
 
-- Meu Deus! Você comeu a princesa. Está me ouvindo?
+- Meu Deus! Você comeu a princesa. Consegue me ouvir?
 
 -Burro!
 
@@ -2450,7 +2449,7 @@ Gosto porque você é bonita. Mas eu gosto de você mesmo assim. Eu... uh, uh...
 
 - Estou encrencado. Certo, vamos lá.
 
-- Não posso me casar com quem eu quiser. Olha bem para mim, Burro. Eu
+- Não posso casar com quem eu quiser. Olha bem para mim, Burro. Eu
 
 Quer dizer, sério, quem pode amar uma fera tão horrível e feia?
 
@@ -2924,7 +2923,7 @@ do nosso "felizes para sempre". Agora me beija! Mmmmm!
 
 -Bem, isso explica muita coisa.
 
--Ugh! É nojento! Guardas! Guardas! Eu ordeno que tirem isso daqui.
+-Ugh! É nojento! Guardas! Guardas! Eu ordeno que tirem isso daqui
 
 Minha visão agora! Peguem eles! Peguem os dois!
 
@@ -3024,7 +3023,7 @@ O amor estava querendo me pegar
 
 Foi assim que pareceu
 
-A decepção assombrava todos os meus sonhos
+A decepção assombrou todos os meus sonhos
 
 E então eu vi o rosto dela
 
@@ -3434,6 +3433,7 @@ Enquanto eu olho
 
 Em seu rosto perfeito
 `;
+// =========================
 
 // === FUNÇÃO PRINCIPAL ===
 async function sendScript(text, ms) {
@@ -3449,29 +3449,18 @@ async function sendScript(text, ms) {
 
   for (let line of lines) {
     textarea.focus();
-
-    // Simula digitação
     document.execCommand('insertText', false, line);
-    
-    // Dispara evento para o WhatsApp detectar
     textarea.dispatchEvent(new InputEvent('input', { bubbles: true }));
-
-    // Pressiona Enter para enviar
-    const enterEvent = new KeyboardEvent('keydown', {
+    textarea.dispatchEvent(new KeyboardEvent('keydown', {
       bubbles: true,
       cancelable: true,
       key: 'Enter',
       code: 'Enter'
-    });
-    textarea.dispatchEvent(enterEvent);
-
+    }));
     await new Promise(r => setTimeout(r, ms));
   }
   console.log("✅ Script enviado com sucesso!");
 }
 
-// Executa
-sendScript(roteiro, delay);
-
-// Executa
+// === EXECUTAR ===
 sendScript(roteiro, delay);
