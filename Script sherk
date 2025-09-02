@@ -1,9 +1,9 @@
 // === CONFIGURAÇÕES ===
 const delay = 100; // 0,1 segundos entre mensagens
 
-
 // Cole seu texto corrido aqui ↓↓↓
 // Cada linha será enviada como uma mensagem separada
+const roteiro = 
 {Homem} Era uma vez uma linda princesa.
 
 Mas ela tinha um encantamento de uma espécie assustadora que só poderia
